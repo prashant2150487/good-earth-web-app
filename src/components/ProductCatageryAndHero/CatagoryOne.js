@@ -2,8 +2,8 @@ import React from "react";
 
 const CategoryOne = () => {
   return (
-    <div className="p-10 px-60 h-screen ">
-      <div className="h-30 flex  flex-col sm:flex-row max-h-fit bg-slate-400 gap-4 ">
+    <div className="p-10 px-60  h-fit ">
+      <div className="flex  flex-col sm:flex-row   bg-slate-400 gap-4 ">
         <div className="h-sm ">
           <img
             src="https://djhiy8e1dslha.cloudfront.net/media/images/product/Medium/I00229108-1625206331.jpg"
@@ -11,7 +11,7 @@ const CategoryOne = () => {
             className="w-full"
           />
         </div>
-        <div className="grid grid-cols-2  bg-slate-700 gap-4 h-fit">
+        <div className="grid grid-cols-2  bg-slate-700 gap-4 ">
           <div className="w-full h-3/4 relative">
             <img
               src="https://djhiy8e1dslha.cloudfront.net/media/images/product/Medium/I00229108-1625206331.jpg"

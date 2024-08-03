@@ -12,6 +12,7 @@ import {
 import { TfiMoney } from "react-icons/tfi";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrency } from "../../features/currency/currencySlice";
+import Banner from "../Banner/Banner";
 
 const currencyData = ["INR", "USD", "GBD", "SGD", "AED"];
 const currencyIcons = {
@@ -54,6 +55,7 @@ const Header = () => {
 
   return (
     <>
+      <Banner />
       <div
         className="min-w-full border-b-2 flex items-center justify-between container px-4 py-2"
         onMouseEnter={() => setShowMegaMenu(true)}
