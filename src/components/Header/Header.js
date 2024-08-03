@@ -27,6 +27,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const dropdownRef = useRef(null);
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [showMegaMenu, setShowMegaMenu] = useState(false);
 
   const handleCurrency = (item) => {
     if (item) {
@@ -52,56 +53,63 @@ const Header = () => {
   };
 
   return (
-    <div className="min-w-full border-b-2 flex items-center justify-between container px-4 py-2">
-      <MdMenu className="lg:hidden text-2xl" />
-      <a href="/home">
-        <img src={logo} alt="logo" className="h-15 ml-[12%]" width={120} />
-      </a>
-      <div className="hidden lg:flex items-center gap-3 text-gray-800 text-sm decoration-1" >
-        <a href="/home">HOME</a>
-        <a href="/Apparel">APPAREL</a>
-        <a href="/gifting">GIFTING</a>
-        <a href="/our-world" target="_blank">
-          OUR WORLD
+    <>
+      <div
+        className="min-w-full border-b-2 flex items-center justify-between container px-4 py-2"
+        onMouseEnter={() => setShowMegaMenu(true)}
+        onMouseLeave={() => setShowMegaMenu(false)}
+      >
+        <MdMenu className="lg:hidden text-2xl" />
+        <a href="/home">
+          <img src={logo} alt="logo" className="h-15 ml-[12%]" width={120} />
         </a>
-      </div>
-      <div className="flex justify-right items-center gap-3 ">
-        <div className="flex items-center">
-          <IoIosSearch className="text-xl ml-auto text-red-300" />
-          <p className="hidden md:flex text-red-300 ">Search</p>
+        <div className="hidden lg:flex items-center gap-5 text-gray-800 text-sm decoration-1">
+          <a href="/home">HOME</a>
+          <a href="/Apparel">APPAREL</a>
+          <a href="/gifting">GIFTING</a>
+          <a href="/our-world" target="_blank">
+            OUR WORLD
+          </a>
         </div>
-        <div className=" md:flex items-center text-2xl gap-2 relative">
-          <div className="hidden md:flex" ref={dropdownRef}>
-            <div onClick={handleDropdown} className="cursor-pointer">
-              <div className="flex items-center text-sm">
-                {currency} {currencyIcons[currency]}
+        <div className="flex justify-right items-center gap-3 ">
+          <div className="flex items-center">
+            <IoIosSearch className="text-xl ml-auto text-red-300" />
+            <p className="hidden md:flex text-red-300 ">Search</p>
+          </div>
+          <div className=" md:flex items-center text-2xl gap-2 relative">
+            <div className="hidden md:flex" ref={dropdownRef}>
+              <div onClick={handleDropdown} className="cursor-pointer">
+                <div className="flex items-center text-sm">
+                  {currency} {currencyIcons[currency]}
+                </div>
               </div>
+              {dropdownVisible && (
+                <div className="absolute top-17 divide-y-2 rounded-sm border shadow-md">
+                  {currencyData.map((item, index) => (
+                    <div
+                      key={index}
+                      onClick={() => handleCurrency(item)}
+                      className="bg-white hover:bg-gray-200 text-gray-600 text-sm px-7 py-2 cursor-pointer"
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
-            {dropdownVisible && (
-              <div className="absolute top-17 divide-y-2 rounded-sm border shadow-md">
-                {currencyData.map((item, index) => (
-                  <div
-                    key={index}
-                    onClick={() => handleCurrency(item)}
-                    className="bg-white hover:bg-gray-200 text-gray-600 text-sm px-7 py-2 cursor-pointer"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-          <CiUser className="hidden md:flex" />
-          <CiHeart className="hidden md:flex" />
-          <div className="relative flex flex-col items-center">
-            <span className="absolute -top-5 right-2.5 text-sm text-gray-500">
-              1
-            </span>
-            <IoBagOutline className="text-2xl text-gray-600" />
+            <CiUser className="hidden md:flex" />
+            <CiHeart className="hidden md:flex" />
+            <div className="relative flex flex-col items-center">
+              <span className="absolute -top-5 right-2.5 text-sm text-gray-500">
+                1
+              </span>
+              <IoBagOutline className="text-2xl text-gray-600" />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      {showMegaMenu && <p>megamenu</p>}
+    </>
   );
 };
 
